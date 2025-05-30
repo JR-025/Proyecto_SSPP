@@ -1,0 +1,41 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.alerta {
+    padding: calc(v.$separacion / 4);
+    color: v.$blanco;
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin: 2rem 1.5rem;
+    font-weight: v.$bold;
+    text-transform: uppercase;
+    overflow: hidden;
+    animation: desaparecer 1s ease-in-out 7s forwards;
+
+    &.error {
+        background-color: v.$rojo;
+    }
+
+    &.exito {
+        background-color: v.$verde;
+    }
+}
+
+@keyframes desaparecer {
+    0% {
+        opacity: 1;
+        max-height: 100px;
+        padding: .5rem;
+        margin: 1rem 0;
+    }
+    100% {
+        opacity: 0;
+        max-height: 0;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+
+

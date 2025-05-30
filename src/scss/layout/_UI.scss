@@ -1,0 +1,65 @@
+//DISEÑO GENERAL
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.contenedor-app {
+    @include m.tablet {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        min-height: 100vh;
+        // Asegura que las columnas no se afecten mutuamente
+        grid-template-rows: 1fr;
+        align-items: start; // Evita que se estiren ambas columnas
+    }
+    
+    .imagen {
+        height: 20rem;
+        background-image: url(../img/1.jpg);
+        background-size: cover;
+        background-position: center center;
+        
+        @include m.tablet {
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            // Fuerza el tamaño independientemente del contenido
+            grid-row: 1;
+            overflow: hidden;
+        }
+    }
+
+    .app {
+        width: 95%;
+        margin: 0 auto;
+        padding: 3rem 0;
+        // Contenedor flexible para el formulario y alertas
+        display: flex;
+        flex-direction: column;
+        
+        @include m.tablet {
+            // Asegura que el scroll ocurra solo aquí si es necesario
+            height: 100vh;
+            overflow-y: auto;
+            padding: 3rem 2rem;
+        }
+        
+        .alertas-container {
+            // Contenedor fijo para alertas que no afecte el layout
+            position: relative;
+            min-height: 4rem;
+            z-index: 10;
+            
+            .alerta {
+                // Ajusta la animación para que no empuje otros elementos
+                position: absolute;
+                width: calc(100% - 3rem); // Ajusta al padding
+                animation: desaparecer 1s ease-in-out 10s forwards;
+            }
+        }
+        
+        .formulario {
+            // El formulario ocupa el espacio restante
+            flex-grow: 1;
+        }
+    }
+}
