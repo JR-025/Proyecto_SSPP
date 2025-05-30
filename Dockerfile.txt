@@ -1,0 +1,23 @@
+# Usamos la imagen oficial de PHP con Apache
+FROM php:8.2-apache
+
+# Instalamos extensiones necesarias para MySQL y otras
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+
+# Instalamos Composer globalmente
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Copiamos todo el proyecto al contenedor
+COPY . /var/www/html/
+
+# Establecemos permisos adecuados (puede ajustarse según tu proyecto)
+RUN chown -R www-data:www-data /var/www/html
+
+# Habilitamos mod_rewrite de Apache si lo necesitas
+RUN a2enmod rewrite
+
+# Puerto que exponemos
+EXPOSE 80
+
+# Comando para iniciar Apache
+CMD ["apache2-foreground"]

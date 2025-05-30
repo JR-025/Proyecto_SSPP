@@ -1,0 +1,23 @@
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# PHP
+/vendor/
+/*.log
+
+# Composer
+composer.lock
+
+# Node
+node_modules/
+npm-debug.log
+
+# Entornos
+.env
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
